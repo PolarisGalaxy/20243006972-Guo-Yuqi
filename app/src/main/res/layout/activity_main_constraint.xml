@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Part 2: ConstraintLayout with Weights
+    
+    This layout recreates the same UI as Part 1 using ConstraintLayout:
+    - ConstraintLayout as the root layout
+    - Views positioned using constraints (relative to parent and other views)
+    - Barriers and guidelines for responsive layout
+    - No unnecessary fixed positioning
+    - UI remains usable at different screen sizes
+    
+    The layout uses:
+    - Chains (spread, inside) for distributing space among views
+    - Guidelines as percentages for responsive positioning
+    - Constraints relative to parent and sibling views
+    
+    Author: Guo Yuqi
+    Student ID: 20243006972
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <!-- Guidelines for responsive layout positioning (using percentages) -->
+    <!-- Horizontal guideline at 20% for header -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_header_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <!-- Horizontal guideline at 35% for subheader -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_subheader_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <!-- Horizontal guideline at 65% for description -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_description_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <!-- Horizontal guideline at 80% for info -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_info_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <!-- Header TextView - Constrained to parent top and guidelines -->
+    <TextView
+        android:id="@+id/text_header"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/text_header"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/purple_700"
+        android:padding="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline_header_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Subheader TextView - Constrained between header and description guidelines -->
+    <TextView
+        android:id="@+id/text_subheader"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/text_subheader"
+        android:textSize="18sp"
+        android:textColor="@color/purple_500"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/guideline_header_bottom"
+        app:layout_constraintBottom_toTopOf="@id/guideline_subheader_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Description TextView - Takes more vertical space -->
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/text_description"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/guideline_subheader_bottom"
+        app:layout_constraintBottom_toTopOf="@id/guideline_description_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Info TextView - Positioned below description -->
+    <TextView
+        android:id="@+id/text_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/text_info"
+        android:textSize="14sp"
+        android:textColor="@color/teal_700"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/guideline_description_bottom"
+        app:layout_constraintBottom_toTopOf="@id/guideline_info_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Buttons Container - Horizontal chain for buttons -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/guideline_info_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Change Button - Left side of horizontal chain -->
+        <Button
+            android:id="@+id/button_change"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_change"
+            android:backgroundTint="@color/purple_500"
+            android:textColor="@color/white"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_cancel"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1" />
+
+        <!-- Cancel Button - Right side of horizontal chain -->
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_cancel"
+            android:backgroundTint="@color/teal_700"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@id/button_change"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

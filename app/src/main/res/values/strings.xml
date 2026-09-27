@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Responsive Layout 1</string>
+    
+    <!-- Button texts -->
+    <string name="button_cancel">Cancel</string>
+    <string name="button_change">Change</string>
+    
+    <!-- TextView contents -->
+    <string name="text_header">Responsive UI Demo</string>
+    <string name="text_subheader">LinearLayout / ConstraintLayout</string>
+    <string name="text_description">This application demonstrates responsive user interfaces in Android. The same layout is implemented using two different approaches: LinearLayout with weights (Part 1) and ConstraintLayout with guidelines (Part 2). Both layouts adapt to different screen sizes without using fixed pixel dimensions.</string>
+    <string name="text_info">Part 1: LinearLayout with Weights\nPart 2: ConstraintLayout with Weights\nStudent: Guo Yuqi (20243006972)</string>
+</resources>
